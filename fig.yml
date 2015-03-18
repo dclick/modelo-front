@@ -1,0 +1,8 @@
+web:
+  image: nginx
+  ports:
+  - "80:80"
+  volumes:
+  - dist/:/usr/share/nginx/html/
+  - docker/default.conf:/etc/nginx/conf.d/default.conf
+  - docker/Config.js:/usr/share/config/Config.js
