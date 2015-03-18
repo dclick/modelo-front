@@ -15,4 +15,4 @@ test:
   override:
     - ./node_modules/.bin/gulp test
     - ./node_modules/.bin/gulp build
-    #- cp coverage/test-results.xml $CIRCLE_TEST_REPORTS/test-results.xml
+    - cp coverage/test-results.xml $CIRCLE_TEST_REPORTS/test-results.xml

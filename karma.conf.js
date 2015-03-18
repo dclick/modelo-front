@@ -14,15 +14,33 @@ module.exports = function(config) {
 
     browsers : ['PhantomJS'],
 
+    reporters: ['progress', 'coverage','junit'],
+
     plugins : [
-      'karma-phantomjs-launcher',
-      'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
+        'karma-phantomjs-launcher',
+        'karma-jasmine',
+        'karma-ng-html2js-preprocessor',
+        'karma-coverage',
+        'karma-junit-reporter',
+        'karma-chrome-launcher'
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js']
+      'src/**/*.html': ['ng-html2js'],
+      'src/**/!(*spec.js)': ['coverage']
+    },
+
+    junitReporter: {
+      outputFile: 'coverage/test-results.xml',
+      suite: ''
+    },
+
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'coverage/',
+      file: 'report-lcov.lcov'
     }
+
   };
 
   // This block is needed to execute Chrome on Travis
