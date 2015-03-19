@@ -23,10 +23,13 @@ test:
     #- docker login -e="infra@redspark.io" -u="redsparkinfra" -p="redsparkinfra"
 
     # publish do web
-    #- docker build -t redspark/modelo-web:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM modelo-webapp/docker
-    #- docker push redspark/modelo-web:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM
-    - echo $CIRCLE_ARTIFACTS
-    - tar zcf $CIRCLE_ARTIFACTS/modelo-web.tar dist;
+     - cp -r dist docker/web
+    - docker build -t redspark/modelo-front:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM docker
+    #- docker push redspark/modelo-front:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM
+    - tar zcf $CIRCLE_ARTIFACTS/modelo-front.tar dist;
     - cp coverage/test-results.xml $CIRCLE_TEST_REPORTS/test-results.xml
-
-
+#deployment:
+#  master:
+#    branch: master
+#    commands:
+#        - curl -X POST "http://54.94.230.239:8000/hook/execute?token=modelofront-master-token&hook=core&param=$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM"
