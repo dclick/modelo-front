@@ -23,7 +23,7 @@ test:
     #- docker login -e="infra@redspark.io" -u="redsparkinfra" -p="redsparkinfra"
 
     # publish do web
-     - cp -r dist docker/web
+    - cp -r dist docker/web
     - docker build -t redspark/modelo-front:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM docker
     #- docker push redspark/modelo-front:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM
     - tar zcf $CIRCLE_ARTIFACTS/modelo-front.tar dist;
