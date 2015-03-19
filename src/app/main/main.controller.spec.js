@@ -3,7 +3,7 @@
 describe('controllers', function(){
   var scope;
 
-  beforeEach(module('modeloFront'));
+  beforeEach(module('modeloFront.controllers'));
 
   beforeEach(inject(function($rootScope) {
     scope = $rootScope.$new();
