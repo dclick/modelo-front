@@ -5,15 +5,15 @@ machine:
     - docker
 
 dependencies:
-  pre:
+  cache_directories:
+    - node_modules
+    - bower_components
+  override:
     - docker info
     - npm install -g bower
     - npm install -g gulp
     - npm install
     - bower install
-  cache_directories:
-    - node_modules
-    - bower_components
 test:
   override:
     - gulp test
