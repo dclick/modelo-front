@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('modeloFront')
+angular.module('modeloFront.app.main', ['modeloFront.app.main.controllers'])
   .config(function ($stateProvider) {
     
     $stateProvider
@@ -9,7 +9,6 @@ angular.module('modeloFront')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
-
     
   })
 ;

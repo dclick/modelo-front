@@ -1,25 +1,15 @@
 'use strict';
 
-/**
- Modules
-**/
+angular.module('modeloFront.components',[
+  'modeloFront.components.navbar'
+]);
 
-angular.module('modeloFront.controllers' , []);
-angular.module('modeloFront.filters'     , []);
-angular.module('modeloFront.factories'   , []);
-angular.module('modeloFront.services'    , []);
-angular.module('modeloFront.constants'   , []);
-angular.module('modeloFront.directives'  , []);
-/**
- Script modules
-**/
-angular.module('modeloFront.scripts',[
-  'modeloFront.controllers',
-  'modeloFront.constants',
-  'modeloFront.filters',
-  'modeloFront.factories',
-  'modeloFront.services',
-  'modeloFront.directives'
+angular.module('modeloFront.app',[
+  'modeloFront.app.main'
+]);
+
+angular.module('modeloFront.features',[
+  
 ]);
 
 angular.module('modeloFront', [
@@ -29,7 +19,9 @@ angular.module('modeloFront', [
   'ngSanitize', 
   'ui.router', 
   'ui.bootstrap',
-  'modeloFront.scripts'
+  'modeloFront.app',
+  'modeloFront.components',
+  'modeloFront.features'
 ]);
 
 angular.module('modeloFront')

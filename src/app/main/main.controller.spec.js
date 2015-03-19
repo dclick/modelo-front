@@ -3,7 +3,10 @@
 describe('controllers', function(){
   var scope;
 
-  beforeEach(module('modeloFront.controllers'));
+  //beforeEach(module('modeloFront.app.main.controllers'));
+  //ou carrega o modulo inteiro
+  beforeEach(module('modeloFront.templates'));
+  beforeEach(module('modeloFront'));
 
   beforeEach(inject(function($rootScope) {
     scope = $rootScope.$new();
