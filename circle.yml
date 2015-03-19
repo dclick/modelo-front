@@ -1,8 +1,8 @@
 machine:
   node:
     version: 0.10.28
-  #services:
-  #  - docker
+  services:
+    - docker
 
 dependencies:
   cache_directories:
@@ -16,6 +16,15 @@ test:
   override:
     - gulp test
     - gulp build
+
+    # docker login
+    #- docker login -e="infra@redspark.io" -u="redsparkinfra" -p="redsparkinfra"
+
+    # publish do web
+    #- docker build -t redspark/modelo-web:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM modelo-webapp/docker
+    #- docker push redspark/modelo-web:$CIRCLE_BRANCH-1.0.$CIRCLE_BUILD_NUM
+    - echo $CIRCLE_ARTIFACTS
+    - tar zcf $CIRCLE_ARTIFACTS/modelo-web.tar dist;
     - cp coverage/test-results.xml $CIRCLE_TEST_REPORTS/test-results.xml
 
 
