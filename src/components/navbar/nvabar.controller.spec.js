@@ -4,7 +4,7 @@ describe('controllers', function(){
   var scope;
 
   //beforeEach(module('modeloFront.templates'));
-  beforeEach(module('modeloFront.app.main.controllers'));
+  beforeEach(module('modeloFront.components.navbar'));
   //ou carrega o modulo inteiro
   
   //beforeEach(module('modeloFront'));
@@ -13,14 +13,13 @@ describe('controllers', function(){
     scope = $rootScope.$new();
   }));
 
-  it('should define more than 5 awesome things', inject(function($controller) {
+  it('should be define', inject(function($controller) {
     expect(scope.awesomeThings).toBeUndefined();
 
-    $controller('MainCtrl', {
+    $controller('NavbarCtrl', {
       $scope: scope
     });
+    expect(angular.isDate(scope.date)).toBeTruthy();
 
-    expect(angular.isArray(scope.awesomeThings)).toBeTruthy();
-    expect(scope.awesomeThings.length > 5).toBeTruthy();
   }));
 });
