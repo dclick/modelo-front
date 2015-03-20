@@ -9,7 +9,7 @@ module.exports = function(config) {
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src/',
-      moduleName: 'gulpAngular'
+      moduleName: 'modeloFront.templates'
     },
 
     browsers : ['PhantomJS'],
@@ -27,7 +27,7 @@ module.exports = function(config) {
 
     preprocessors: {
       'src/**/*.html': ['ng-html2js'],
-      'src/**/!(*spec.js)': ['coverage']
+      'src/**/!(*spec.js|*.html)': ['coverage']
     },
 
     junitReporter: {

@@ -45,6 +45,7 @@ module.exports = function(options) {
 
   function runTests (singleRun, done) {
     listFiles(function(files) {
+      //console.log(files);
       karma.server.start({
         configFile: __dirname + '/../karma.conf.js',
         files: files,

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('modeloFront')
+angular.module('modeloFront.app.main.controllers',[])
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       {
