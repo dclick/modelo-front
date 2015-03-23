@@ -9,9 +9,7 @@ angular.module('modeloFront.app.main', ['modeloFront.app.main.controllers', 'pas
       ALLO_ALLO: 'Allo, Allo! Nativoooo'
     };
 
-    $translateProvider
-      .translations('en', translations)
-      .preferredLanguage('en');
+    $translateProvider.translations('en', translations);
 
     $stateProvider
       .state('home', {
