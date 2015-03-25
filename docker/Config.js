@@ -1,3 +1,3 @@
 window.Config = {
-  URL_CONTEXT: "/modelo-java/api/"
+  URL_CONTEXT: "/modelo-java/api/ "
 };
