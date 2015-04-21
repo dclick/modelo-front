@@ -3,11 +3,11 @@
 describe('controllers', function(){
   var scope;
 
-  //beforeEach(module('modeloFront.templates'));
-  beforeEach(module('modeloFront.app.main.controllers'));
+  //beforeEach(module('redspark.templates'));
+  beforeEach(module('redspark.app.main.controllers'));
   //ou carrega o modulo inteiro
   
-  //beforeEach(module('modeloFront'));
+  //beforeEach(module('redspark'));
 
   beforeEach(inject(function($rootScope) {
     scope = $rootScope.$new();

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('modeloFront.components.security.factories').factory('SecurityInterceptor', function($q, $rootScope, ControleMensagem, $injector, $translate, $log, SecurityInterceptorMessages) {
+angular.module('redspark.components.security.factories').factory('SecurityInterceptor', function($q, $rootScope, ControleMensagem, $injector, $translate, $log, SecurityInterceptorMessages) {
     return {
       responseError: function(rejection) {
 

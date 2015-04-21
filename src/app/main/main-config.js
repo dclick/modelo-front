@@ -1,15 +1,10 @@
 'use strict';
 
-angular.module('modeloFront.app.main', ['modeloFront.app.main.controllers', 'pascalprecht.translate'])
-  .config(function ($stateProvider,$translateProvider) {
+angular.module('redspark.app.main', ['redspark.app.main.controllers', 'pascalprecht.translate'])
+  .config(function ($stateProvider,$translateProvider,MainTranslateProvider) {
     
-    var translations = {
-      HEADLINE: 'Always a pleasure scaffolding your apps.',
-      SPLENDID: 'Splendid!',
-      ALLO_ALLO: 'Allo, Allo! Nativoooo'
-    };
-
-    $translateProvider.translations('en', translations);
+    $translateProvider
+      .translations('pt_BR', MainTranslateProvider.pt_BR());
 
     $stateProvider
       .state('home', {

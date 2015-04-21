@@ -6,8 +6,8 @@ describe('route', function(){
   //var scope;
 
   beforeEach(module('ui.router'));
-  beforeEach(module('modeloFront.templates'));
-  beforeEach(module('modeloFront.app.main'));
+  beforeEach(module('redspark.templates'));
+  beforeEach(module('redspark.app.main'));
 
   beforeEach(function() {
 

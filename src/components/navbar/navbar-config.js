@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('modeloFront.components.navbar',[]);
+angular.module('redspark.components.navbar',[]);
   

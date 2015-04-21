@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('modeloFront.components.navbar')
+angular.module('redspark.components.navbar')
   .controller('NavbarCtrl', function ($scope) {
     $scope.date = new Date();
   });

@@ -1,41 +1,36 @@
 'use strict';
 
-angular.module('modeloFront.components',[
-  'modeloFront.components.navbar'
+angular.module('redspark.components',[
+  'redspark.components.navbar'
 ]);
 
-angular.module('modeloFront.app',[
-  'modeloFront.app.main'
+angular.module('redspark.app',[
+  'redspark.app.main'
 ]);
 
-angular.module('modeloFront.features',[
+angular.module('redspark.features',[
   
 ]);
 
-angular.module('modeloFront', [
+angular.module('redspark', [
   'ngAnimate', 
   'ngCookies', 
   'ngTouch', 
   'ngSanitize', 
   'ui.router', 
   'ui.bootstrap',
-  'modeloFront.app',
+  'redspark.app',
   'pascalprecht.translate',
-  'modeloFront.components',
-  'modeloFront.features'
+  'redspark.components',
+  'redspark.features'
 ]);
 
-angular.module('modeloFront')
-  .config(function ($stateProvider, $urlRouterProvider,$translateProvider) {
-
-    var translations = {
-      HEADLINE: 'Always a pleasure scaffolding your apps Personalizada'//,
-      //ALLO_ALLO: 'Allo, Allo!'
-    };
+angular.module('redspark')
+  .config(function ($stateProvider, $urlRouterProvider,$translateProvider,IndexTranslateProvider) {
 
     $translateProvider
-      .translations('en', translations)
-      .preferredLanguage('en');
+      .translations('pt_BR', IndexTranslateProvider.pt_BR())
+      .preferredLanguage('pt_BR');
 
     $urlRouterProvider.otherwise('/');
   })

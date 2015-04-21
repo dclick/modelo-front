@@ -1,9 +1,9 @@
 'use strict';
-angular.module('modeloFront.components.security.factories').factory('SecurityInterceptorMessages', function($q, $rootScope, ControleMensagem, $injector, $translate, $log) {
+angular.module('redspark.components.security.factories').factory('SecurityInterceptorMessages', function($q, $rootScope, $injector, $translate, $log) {
     
     var getException;
     getException = function(data) {
-      //ControleMensagem.erro(getException(rejection.data.reason || rejection.data.mensagem));
+      //$log.error(getException(rejection.data.reason || rejection.data.mensagem));
       if(!angular.isObject(data)){  
         return $translate.instant('exception.erro.generico');
       }
@@ -25,26 +25,26 @@ angular.module('modeloFront.components.security.factories').factory('SecurityInt
         $rootScope.configData = { 'autenticado': false, 'login': null };
         var state = $injector.get('$state');
         state.go('login');
-        ControleMensagem.erro($translate.instant('exception.usuario.nao.autenticado'));
+        $log.error($translate.instant('exception.usuario.nao.autenticado'));
       },
 
       apply400: function(){
-        ControleMensagem.erro($translate.instant('exception.bad.request'));
+        $log.error($translate.instant('exception.bad.request'));
       },
       apply403: function(rejection) {
         switch(rejection.data) {
           case 'aplicacao.nao.encontrada':
-            ControleMensagem.erro($translate.instant('exception.aplicacao.nao.encontrada'));
+            $log.error($translate.instant('exception.aplicacao.nao.encontrada'));
             break;
           case 'usuario.ou.senha.invalidos':
           case 'Bad credentials':
-            ControleMensagem.erro($translate.instant('exception.bad.credentials'));
+            $log.error($translate.instant('exception.bad.credentials'));
             break;
           case 'usuario.desativado':
-            ControleMensagem.erro($translate.instant('exception.usuario.desativado'));
+            $log.error($translate.instant('exception.usuario.desativado'));
             break;
           default:
-            ControleMensagem.erro(getException(rejection.data));
+            $log.error(getException(rejection.data));
             break;
         }
       },
@@ -52,13 +52,13 @@ angular.module('modeloFront.components.security.factories').factory('SecurityInt
         this.apply403(rejection);
       },
       apply412: function(rejection){
-        ControleMensagem.erro(getException(rejection.data));
+        $log.error(getException(rejection.data));
       },
       apply500: function(){
-        ControleMensagem.erro($translate.instant('exception.erro.generico'));
+        $log.error($translate.instant('exception.erro.generico'));
       },
       apply502: function(){
-        ControleMensagem.erro($translate.instant('exception.service.unavailable'));
+        $log.error($translate.instant('exception.service.unavailable'));
       },
       apply503: function(){
         this.apply503();
