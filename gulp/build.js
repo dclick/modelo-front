@@ -18,7 +18,7 @@ module.exports = function(options) {
         quotes: true
       }))
       .pipe($.angularTemplatecache('templateCacheHtml.js', {
-        module: 'modeloFront'
+        module: 'redspark'
       }))
       .pipe(gulp.dest(options.tmp + '/partials/'));
   });
