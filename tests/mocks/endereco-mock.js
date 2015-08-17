@@ -1,4 +1,4 @@
-angular.module('sescMotoFrete.mocks')
+angular.module('modeloBase.mocks')
   .constant('EnderecoMock', {
     "cepCodigo": "14802280",
     "tipoLogradouro": "R",

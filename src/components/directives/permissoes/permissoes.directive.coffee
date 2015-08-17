@@ -1,7 +1,7 @@
 'use strict'
 
 
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
 
   .directive "permissoes", ($rootScope, PermissaoService) ->
     restrict : 'A'

@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .service "FormatoService", ($http, APP_BASE_URL) ->
 
     pagination = (page, size, search) ->

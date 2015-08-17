@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .controller "SolicitacaoListarCtrl", ($scope, $state, $noty, $filter, $translate, $window, SolicitacaoService, STATUS, botoes) ->
 
     ##################################

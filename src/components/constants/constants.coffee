@@ -3,7 +3,7 @@
 # =============================================
 # Constants
 # =============================================
-angular.module 'sescMotoFrete'
+angular.module 'modeloBase'
 
   # Base URL for services
   .constant 'APP_BASE_URL', window.config.APP_BASE_URL

@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
 
   .directive "invalidIf", ($timeout) ->
     restrict : 'A'

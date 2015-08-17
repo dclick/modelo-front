@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .filter "formatDateFilter", () ->
 
     return (date) ->

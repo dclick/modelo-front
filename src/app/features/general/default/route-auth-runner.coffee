@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .run ($rootScope, routeAuth) ->
     routeAuth.updateUserInfo()
 

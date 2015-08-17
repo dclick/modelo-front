@@ -1,7 +1,7 @@
 'use strict'
 
 
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
 
   .directive "requestLoader", ($rootScope) ->
     restrict    : 'A'

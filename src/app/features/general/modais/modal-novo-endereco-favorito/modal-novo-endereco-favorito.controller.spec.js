@@ -3,7 +3,7 @@
 describe('controller: NovoFavoritoModalCtrl', function(){
   var scope, rootScope, modalInstance, controllerInjections, EnderecoMock;
 
-  beforeEach(module('sescMotoFrete', function ($translateProvider, $provide, $urlRouterProvider) {
+  beforeEach(module('modeloBase', function ($translateProvider, $provide, $urlRouterProvider) {
     $translateProvider.translations('pt-BR', {});
     $provide.value('routeAuth', {
       updateUserInfo: function() {
@@ -16,7 +16,7 @@ describe('controller: NovoFavoritoModalCtrl', function(){
     $urlRouterProvider.otherwise('/solicitacao/criar');
   }));
 
-  beforeEach(module('sescMotoFrete.mocks'));
+  beforeEach(module('modeloBase.mocks'));
   beforeEach(module('app/features/login/default/login.html'));
   beforeEach(module('app/features/solicitacao/default/solicitacao.html'));
   beforeEach(module('app/features/solicitacao/criar/solicitacao-criar.html'));

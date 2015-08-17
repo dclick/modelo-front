@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .service "solicitacaoTransformResponse", () ->
     (response) ->
       response = JSON.parse response

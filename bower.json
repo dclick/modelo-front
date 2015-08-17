@@ -1,5 +1,5 @@
 {
-  "name": "sescMotoFrete",
+  "name": "modeloBase",
   "version": "0.0.0",
   "dependencies": {
     "jquery": "~1.11.1",

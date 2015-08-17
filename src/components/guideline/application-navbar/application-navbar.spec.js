@@ -3,12 +3,12 @@
 describe('directive: GuidelineApplicationNavbar', function(){
   var $rootScope, $scope, $window, $compile, $timeout, $state, $templateCache, isolateScope, elem;
 
-  beforeEach(module('sescMotoFrete'));
+  beforeEach(module('modeloBase'));
   beforeEach(module('pascalprecht.translate'));
   beforeEach(module('guideline.application-navbar.template'));
 
   // Angular Translates
-  beforeEach(module('sescMotoFrete', function ($translateProvider) {
+  beforeEach(module('modeloBase', function ($translateProvider) {
     $translateProvider.translations('pt-BR', {});
   }));
 

@@ -3,7 +3,7 @@
 describe('controller: SolicitacaoCriarCtrl', function(){
   var scope, solicitacao, itemAtual, PrioridadesMock, FormatosMock, UnidadesMock, ContasMock, TipoSolicitacoesMock, MeusFavoritosMock, UsuariosMock, CcesMock, EnderecoMock, CidadesMock, DefaultController, modalMock, BotoesMock;
 
-  beforeEach(module('sescMotoFrete', function ($translateProvider, $provide, $urlRouterProvider) {
+  beforeEach(module('modeloBase', function ($translateProvider, $provide, $urlRouterProvider) {
     $translateProvider.translations('pt-BR', {});
     $provide.value('routeAuth', {
       updateUserInfo: function() {
@@ -16,7 +16,7 @@ describe('controller: SolicitacaoCriarCtrl', function(){
     $urlRouterProvider.otherwise('/solicitacao/criar');
   }));
 
-  beforeEach(module('sescMotoFrete.mocks'));
+  beforeEach(module('modeloBase.mocks'));
   beforeEach(module('app/features/login/default/login.html'));
   beforeEach(module('app/features/solicitacao/default/solicitacao.html'));
   beforeEach(module('app/features/solicitacao/listar/solicitacao-listar.html'));

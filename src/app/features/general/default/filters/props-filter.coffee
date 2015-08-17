@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .filter "propsFilter", () ->
     (items, props) ->
       out = []

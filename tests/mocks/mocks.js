@@ -1,1 +1,1 @@
-angular.module('sescMotoFrete.mocks', []);
+angular.module('modeloBase.mocks', []);

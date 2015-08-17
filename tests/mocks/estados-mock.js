@@ -1,4 +1,4 @@
-angular.module('sescMotoFrete.mocks')
+angular.module('modeloBase.mocks')
   .constant('EstadosMock', [
     {
       "est_nome": "ACRE",

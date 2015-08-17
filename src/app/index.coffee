@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete", ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.utils', 'ui.select', 'ui.utils.masks', 'pascalprecht.translate', 'guideline', 'angularSpinner']
+angular.module "modeloBase", ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.utils', 'ui.select', 'ui.utils.masks', 'pascalprecht.translate', 'guideline', 'angularSpinner']
   .config ($stateProvider, $urlRouterProvider, APP_OTHERWISE_URL) ->
     $stateProvider
       #############################

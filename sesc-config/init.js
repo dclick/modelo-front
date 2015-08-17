@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   bootstrap = function() {
     // Bootstrap da aplicação
-    angular.bootstrap(document, ['sescMotoFrete']);
+    angular.bootstrap(document, ['modeloBase']);
   }
 
   $.ajax(request).success(bootstrapWithLoggedUser).error(bootstrapWithoutLoggedUser);

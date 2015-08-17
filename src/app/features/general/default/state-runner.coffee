@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .run ($rootScope, $state, $stateParams) ->
     $rootScope.$state       = $state
     $rootScope.$stateParams = $stateParams

@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .service "NotificationCenterService", ($q, $http, APP_BASE_URL, NotificacaoConstructor) ->
     return {
       getById: (id)->

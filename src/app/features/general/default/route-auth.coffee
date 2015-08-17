@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
 .factory "routeAuth", ($rootScope, $state, $window, PermissaoService, APP_USER_NOT_AUTH_REDIRECT) ->
 
   return {

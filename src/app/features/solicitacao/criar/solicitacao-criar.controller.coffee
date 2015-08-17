@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .controller "SolicitacaoCriarCtrl", ($scope, $rootScope, $modal, $state, $noty, $translate, SolicitacaoService, MeusEnderecosService, EnderecoService, UsuarioService, CceService, itemAtual, prioridades, formatos, unidades, contas, tipoSolicitacoes, enderecosFavoritos) ->
 
     ##################################

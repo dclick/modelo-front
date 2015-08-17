@@ -1,7 +1,7 @@
 'use strict';
 
 describe('filter: valorFilter', function(){
-  beforeEach(module('sescMotoFrete'));
+  beforeEach(module('modeloBase'));
 
   // =============================================
   // Tests

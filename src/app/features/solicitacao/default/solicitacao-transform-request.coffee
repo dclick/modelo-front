@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .service "solicitacaoTransformRequest", () ->
     (request) ->
       request                 = angular.copy(request)

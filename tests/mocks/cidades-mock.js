@@ -1,4 +1,4 @@
-angular.module('sescMotoFrete.mocks')
+angular.module('modeloBase.mocks')
   .constant('CidadesMock', [
     {
         "cid_nome": "17800000",

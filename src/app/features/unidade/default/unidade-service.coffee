@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .service "UnidadeService", ($http, APP_BASE_URL) ->
 
     return {

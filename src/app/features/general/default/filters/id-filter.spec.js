@@ -1,7 +1,7 @@
 'use strict';
 
 describe('filter: idFilter', function(){
-  beforeEach(module('sescMotoFrete'));
+  beforeEach(module('modeloBase'));
 
   // =============================================
   // Tests

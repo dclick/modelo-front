@@ -1,4 +1,4 @@
-angular.module "sescMotoFrete"
+angular.module "modeloBase"
   .controller "NovoFavoritoModalCtrl", ($scope, $rootScope, $modalInstance, $noty, $translate, MeusEnderecosService, novoFavorito) ->
 
     ##################################
