@@ -1,0 +1,449 @@
+<div permissoes="ROLE_SOLICITACAO.CRIAR">
+  <div class="page-header">
+    <div class="container">
+      <div guideline-breadcrumbs></div>
+      <h1>Criar solicitação</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-right">* Preenchimento obrigatório</p>
+      </div>
+    </div>
+    <form name="form" class="form-horizontal" novalidate ng-submit="create()">
+
+      <!-- Unidade -->
+      <div class="control-group" permissoes="ROLE_SOLICITACAO.LISTAR.TODAS" ng-class="{
+        'error': form.unidade.$invalid && !form.unidade.$pristine
+      }">
+        <label for="unidade" class="control-label required" name="unidade" translate>solicitacao.form.UNIDADE</label>
+        <div class="controls" ng-if="!isDetails">
+          <ui-select ng-model="solicitacao.unidade" theme="select2" required>
+            <ui-select-match placeholder="Selecione uma unidade">{{$select.selected.sigla}}</ui-select-match>
+            <ui-select-choices repeat="unidade in unidades | propsFilter: {sigla: $select.search}">
+              <div ng-bind-html="unidade.sigla | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+          <span class="help-inline" ng-show="form.unidade.$error.required && !form.unidade.$pristine" translate>
+            form.OBRIGATORIO
+          </span>
+        </div>
+        <div class="controls" ng-if="isDetails">
+          <p class="padding-top-sm no-margin" ng-bind="solicitacao.unidade.sigla"></p>
+        </div>
+      </div>
+
+      <hr />
+
+      <fieldset ng-show="solicitacao.unidade">
+
+        <!-- Título -->
+        <div class="control-group">
+          <div class="controls">
+            <b translate>solicitacao.form.DETALHES_SOLICITACAO</b>
+          </div>
+        </div>
+
+        <!-- Data do agendamento -->
+        <div class="control-group" ng-class="{
+          'error': form.dataAgendamento.$invalid && !form.dataAgendamento.$pristine
+        }">
+          <label for="dataAgendamento" class="control-label required" translate>solicitacao.form.DATA_AGENDAMENTO</label>
+          <div class="controls" ng-if="!isDetails">
+            <input type="text" name="dataAgendamento" placeholder="__/__/____" datepicker-guideline ng-model="solicitacao.dataAgendamento"
+            ng-pattern="/\d{2}\/\d{2}\/\d{4}/" required /> <!-- Regex para validar data -->
+            <span class="help-inline" ng-show="form.dataAgendamento.$error.required && !form.dataAgendamento.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+            <span class="help-inline" ng-show="form.dataAgendamento.$error.pattern && !form.dataAgendamento.$pristine">
+              Data inválida
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.dataAgendamento"></p>
+          </div>
+        </div>
+
+        <!-- Prioridade -->
+        <div class="control-group" ng-class="{
+          'error': form.prioridade.$invalid && !form.prioridade.$pristine
+        }">
+          <label for="prioridade" class="control-label required" translate>solicitacao.form.PRIORIDADE</label>
+          <div class="controls" ng-if="!isDetails">
+            <select ng-model="solicitacao.prioridade.id" name="prioridade" ng-options="prioridade.id as prioridade.nome for prioridade in prioridades" required>
+              <option value="">Informe a prioridade</option>
+            </select>
+            <span class="help-inline" ng-show="form.prioridade.$error.required && !form.prioridade.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.prioridade.nome"></p>
+          </div>
+        </div>
+
+        <!-- Nome do solicitante -->
+        <div class="control-group" ng-class="{
+          'error': form.solicitante.$invalid && !form.solicitante.$pristine
+        }">
+          <label for="solicitante" class="control-label required" translate>solicitacao.form.NOME_SOLICITANTE</label>
+          <div class="controls" ng-if="!isDetails">
+            <ui-select ng-model="solicitacao.solicitante" theme="select2" ng-disabled="solicitanteLoader" required>
+              <ui-select-match placeholder="Selecione um solicitante">{{$select.selected.nome}}</ui-select-match>
+              <ui-select-choices repeat="solicitante in solicitantes | propsFilter: {nome: $select.search}">
+                <div ng-bind-html="solicitante.nome | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+            <p ng-show="solicitanteLoader" class="loader"></p>
+            <span class="help-inline" ng-show="form.solicitante.$error.required && !form.solicitante.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.solicitante.nome"></p>
+          </div>
+        </div>
+
+        <!-- Conta -->
+        <div class="control-group" ng-class="{
+          'error': form.conta.$invalid && !form.conta.$pristine
+        }">
+          <label for="conta" class="control-label required" translate>solicitacao.form.CONTA</label>
+          <div class="controls" ng-if="!isDetails">
+            <ui-select ng-model="solicitacao.conta" name="conta" theme="select2" required>
+              <ui-select-match placeholder="Selecione uma conta">{{$select.selected.descricao}}</ui-select-match>
+              <ui-select-choices repeat="conta in contas | propsFilter: {descricao: $select.search}">
+                <div ng-bind-html="conta.descricao | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+            <span class="help-inline" ng-show="form.conta.$error.required && !form.conta.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.conta.descricao"></p>
+          </div>
+        </div>
+
+        <!-- CCE -->
+        <div class="control-group" ng-class="{
+          'error': form.cce.$invalid && !form.cce.$pristine
+        }">
+          <label for="cce" class="control-label required" translate>solicitacao.form.CCE</label>
+          <div class="controls" ng-if="!isDetails">
+            <ui-select ng-model="solicitacao.cce" theme="select2" ng-disabled="cceLoader" required>
+              <ui-select-match placeholder="Selecione uma CCE">{{$select.selected.nome}}</ui-select-match>
+              <ui-select-choices repeat="cce in cces | propsFilter: {nome: $select.search}">
+                <div ng-bind-html="cce.nome | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+            <p ng-show="cceLoader" class="loader"></p>
+            <span class="help-inline" ng-show="form.cce.$error.required && !form.cce.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.cce.nome"></p>
+          </div>
+        </div>
+
+        <!-- Formato -->
+        <div class="control-group" ng-class="{
+          'error': form.formato.$invalid && !form.formato.$pristine
+        }">
+          <label for="formato" class="control-label required" translate>solicitacao.form.FORMATO</label>
+          <div class="controls" ng-if="!isDetails">
+            <select ng-model="solicitacao.formato.id" name="formato" ng-options="formato.id as formato.nome for formato in formatos" required>
+              <option value="">Informe o formato</option>
+            </select>
+            <span class="help-inline" ng-show="form.formato.$error.required && !form.formato.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.formato.nome"></p>
+          </div>
+        </div>
+
+        <!-- Peso aproximado -->
+        <div class="control-group" ng-class="{
+          'error': form.pesoAproximado.$invalid && !form.pesoAproximado.$pristine
+        }">
+          <label for="pesoAproximado" class="control-label required" translate>solicitacao.form.PESO_APROXIMADO</label>
+          <div class="controls" ng-if="!isDetails">
+            <input type="text" class="small-input" ng-model="solicitacao.pesoAproximado" name="pesoAproximado" ui-number-mask ui-hide-group-sep min="0.01" required maxlength="10">
+            <span class="help-inline" translate>form.KG</span>
+            <span class="help-inline" ng-show="form.pesoAproximado.$error.required && !form.pesoAproximado.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+            <span class="help-inline" ng-show="form.pesoAproximado.$error.min && !form.pesoAproximado.$pristine">
+              <span translate>form.MAIOR_IGUAL_A</span> 0,01
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin">
+              <span ng-bind="solicitacao.pesoAproximado"></span>
+              <span translate>form.KG</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Cubagem -->
+        <div class="control-group">
+          <label for="cubagem" class="control-label required" ng-class="{
+            'label-error': form.altura.$invalid && !form.altura.$pristine || form.largura.$invalid && !form.largura.$pristine
+            || form.profundidade.$invalid && !form.profundidade.$pristine
+          }" translate>solicitacao.form.CUBAGEM</label>
+          <div class="controls" ng-if="!isDetails">
+            <input type="text" class="small-input" ng-model="solicitacao.altura" name="altura" ui-number-mask ui-hide-group-sep min="0.01"
+            ng-class="{'input-error': form.altura.$invalid && !form.altura.$pristine}" maxlength="10" required>
+            <input type="text" class="small-input" ng-model="solicitacao.largura" name="largura" ui-number-mask ui-hide-group-sep min="0.01"
+            ng-class="{'input-error': form.largura.$invalid && !form.largura.$pristine}" maxlength="10" required>
+            <input type="text" class="small-input" ng-model="solicitacao.profundidade" name="profundidade" ui-number-mask ui-hide-group-sep min="0.01" ng-class="{'input-error': form.profundidade.$invalid && !form.profundidade.$pristine}" maxlength="10"required>
+            <span class="help-inline">A x L x P (<span translate>form.CM</span>)</span>
+
+            <span class="help-inline label-error" ng-show="
+              form.altura.$error.required && !form.altura.$pristine ||
+              form.largura.$error.required && !form.largura.$pristine ||
+              form.profundidade.$error.required && !form.profundidade.$pristine"
+            >
+              <span translate>form.OBRIGATORIO</span>
+            </span>
+
+            <span class="help-inline label-error" ng-show="
+              form.altura.$error.min && !form.altura.$pristine ||
+              form.largura.$error.min &&!form.largura.$pristine ||
+              form.profundidade.$error.min && !form.profundidade.$pristine"
+            >
+              <span translate>form.MAIOR_IGUAL_A</span> 0,01
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin">
+              <span ng-bind="solicitacao.altura"></span> |
+              <span ng-bind="solicitacao.largura"></span> |
+              <span ng-bind="solicitacao.profundidade"></span>
+              <span>A x L x P (<span translate>form.CM</span>)</span>
+            </p>
+          </div>
+        </div>
+
+
+        <!-- Valor Estimado -->
+        <div class="control-group" ng-class="{
+          'error': form.valorEstimado.$invalid && !form.valorEstimado.$pristine
+        }">
+          <label for="valorEstimado" class="control-label required" translate>solicitacao.form.VALOR_ESTIMADO</label>
+          <div class="controls" ng-if="!isDetails">
+            <div class="input-prepend input-append">
+              <span class="add-on">R$</span>
+              <input type="text" ng-model="solicitacao.valorEstimado" name="valorEstimado" ui-number-mask min="0.01" required>
+            </div>
+            <span class="help-inline" ng-show="form.valorEstimado.$error.min && !form.valorEstimado.$pristine">
+              <span translate>form.MAIOR_IGUAL_A</span> 0,01
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.valorEstimado | valorFilter:'R$'"></p>
+          </div>
+        </div>
+
+
+        <!-- Tipo de solicitação -->
+        <div class="control-group" ng-class="{
+          'error': form.tipoSolicitacao.$invalid && !form.tipoSolicitacao.$pristine
+        }">
+          <label for="tipoSolicitacao" class="control-label required" translate>solicitacao.form.TIPO_SOLICITACAO</label>
+          <div class="controls" ng-if="!isDetails">
+            <select ng-model="solicitacao.tipoSolicitacao.id" name="tipoSolicitacao" ng-options="tipoSolicitacao.id as tipoSolicitacao.nome for tipoSolicitacao in tipoSolicitacoes" required>
+              <option value="">Informe o tipo de solicitação</option>
+            </select>
+            <span class="help-inline" ng-show="form.tipoSolicitacao.$error.required && !form.tipoSolicitacao.$pristine" translate>
+              form.OBRIGATORIO
+            </span>
+          </div>
+          <div class="controls" ng-if="isDetails">
+            <p class="padding-top-sm no-margin" ng-bind="solicitacao.tipoSolicitacao.nome"></p>
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="well">
+
+          <!-- Título -->
+          <div class="control-group">
+            <div class="controls">
+              <b translate>solicitacao.form.ENDERECO</b>
+            </div>
+          </div>
+
+          <!-- Favorito -->
+          <div ng-if="!isDetails" class="control-group" ng-class="{
+            'error': form.enderecoFavorito.$invalid && !form.enderecoFavorito.$pristine
+          }">
+            <label for="enderecoFavorito" class="control-label" translate>solicitacao.form.FAVORITOS</label>
+            <div class="controls">
+              <ui-select ng-model="solicitacao.favorito" name="enderecoFavorito" theme="select2">
+                <ui-select-match placeholder="Nome de um favorito">{{$select.selected.nome}}</ui-select-match>
+                <ui-select-choices repeat="favorito in enderecosFavoritos | propsFilter: {nome: $select.search}">
+                  <div ng-bind-html="favorito.nome | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- CEP -->
+          <div class="control-group" ng-class="{
+            'error': form.cep.$invalid && !form.cep.$pristine
+          }">
+            <label for="cep" class="control-label required" translate>solicitacao.form.CEP</label>
+            <div class="controls" ng-if="!isDetails">
+              <input type="text" ui-mask="99999-999" ng-model="solicitacao.cep" name="cep" ng-disabled="enderecoLoader" required ng-blur="buscarPorCep()">
+              <button type="button" class="btn" ng-click="buscarPorCep()" ng-disabled="form.cep.$invalid">Buscar CEP</button>
+              <button type="button" class="btn" ng-show="isFavorite" ng-click="limparEndereco()" ng-disabled="form.cep.$invalid">Limpar</button>
+              <p ng-show="enderecoLoader" class="loader"></p>
+              <span class="help-inline" ng-show="form.cep.$error.required && !form.cep.$pristine" translate>
+                form.OBRIGATORIO
+              </span>
+              <span class="help-inline" ng-show="form.cep.$error.cep && !form.cep.$pristine">
+                CEP inválido
+              </span>
+            </div>
+            <div class="controls" ng-if="isDetails">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.cep | cep"></p>
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="control-group" ng-show="solicitacao.uf" ng-class="{
+            'error': form.estado.$invalid && !form.estado.$pristine
+          }">
+            <label for="estado" class="control-label required" translate>solicitacao.form.UF</label>
+            <div class="controls">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.uf"></p>
+              <!-- <ui-select ng-model="solicitacao.uf" theme="select2" required>
+                <ui-select-match placeholder="Selecione um UF">{{$select.selected.est_sigla}}</ui-select-match>
+                <ui-select-choices repeat="estado.est_sigla as estado in estados | propsFilter: {est_sigla: $select.search}">
+                  <div ng-bind-html="estado.est_sigla | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+              <span class="help-inline" ng-show="form.estado.$error.required && !form.estado.$pristine" translate>
+                form.OBRIGATORIO
+              </span> -->
+            </div>
+          </div>
+
+          <!-- Cidade -->
+          <div class="control-group" ng-show="solicitacao.cidade" ng-class="{
+            'error': form.cidade.$invalid && !form.cidade.$pristine
+          }">
+            <label for="cidade" class="control-label required" translate>solicitacao.form.CIDADE</label>
+            <div class="controls">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.cidade"></p>
+              <!-- <ui-select ng-model="solicitacao.cidade" theme="select2" ng-disabled="cidadeLoader" required>
+                <ui-select-match placeholder="Selecione uma cidade">{{$select.selected.cid_nome}}</ui-select-match>
+                <ui-select-choices repeat="cidade.cid_nome as cidade in cidades | propsFilter: {cid_nome: $select.search}">
+                  <div ng-bind-html="cidade.cid_nome | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+              <p ng-show="cidadeLoader" class="loader"></p>
+              <span class="help-inline" ng-show="form.cidade.$error.required && !form.cidade.$pristine" translate>
+                form.OBRIGATORIO
+              </span> -->
+            </div>
+          </div>
+
+          <!-- Logradouro -->
+          <div class="control-group" ng-show="solicitacao.logradouro" ng-class="{
+            'error': form.logradouro.$invalid && !form.logradouro.$pristine
+          }">
+            <label for="logradouro" class="control-label required" translate>solicitacao.form.LOGRADOURO</label>
+            <div class="controls">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.logradouro"></p>
+              <!-- <input type="text" ng-model="solicitacao.logradouro" name="logradouro" required>
+              <span class="help-inline" ng-show="form.logradouro.$error.required && !form.logradouro.$pristine" translate>
+                form.OBRIGATORIO
+              </span> -->
+            </div>
+          </div>
+
+          <!-- Bairro -->
+          <div class="control-group" ng-show="solicitacao.bairro" ng-class="{
+            'error': form.bairro.$invalid && !form.bairro.$pristine
+          }">
+            <label for="bairro" class="control-label required" translate>solicitacao.form.BAIRRO</label>
+            <div class="controls">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.bairro"></p>
+              <!-- <input type="text" ng-model="solicitacao.logradouro" name="logradouro" required>
+              <span class="help-inline" ng-show="form.logradouro.$error.required && !form.logradouro.$pristine" translate>
+                form.OBRIGATORIO
+              </span> -->
+            </div>
+          </div>
+
+          <!-- Número -->
+          <div class="control-group" ng-class="{
+            'error': form.numero.$invalid && !form.numero.$pristine
+          }">
+            <label for="numero" class="control-label required" translate>solicitacao.form.NUMERO</label>
+            <div class="controls" ng-if="!isDetails">
+              <input type="text" class="small-input" ng-model="solicitacao.numero" name="numero" ui-number-mask="0" ui-hide-group-sep required>
+              <span class="help-inline" ng-show="form.numero.$error.required && !form.numero.$pristine" translate>
+                form.OBRIGATORIO
+              </span>
+            </div>
+            <div class="controls" ng-if="isDetails">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.numero"></p>
+            </div>
+          </div>
+
+          <!-- Complemento -->
+          <div class="control-group" ng-class="{
+            'error': form.complemento.$invalid && !form.complemento.$pristine
+          }">
+            <label for="complemento" class="control-label" translate>solicitacao.form.COMPLEMENTO</label>
+            <div class="controls" ng-if="!isDetails">
+              <input type="text" ng-model="solicitacao.complemento" name="complemento">
+            </div>
+            <div class="controls" ng-if="isDetails">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.complemento"></p>
+            </div>
+          </div>
+
+          <!-- Contato -->
+          <div class="control-group" ng-class="{
+            'error': form.contato.$invalid && !form.contato.$pristine
+          }">
+            <label for="contato" class="control-label required" translate>solicitacao.form.CONTATO</label>
+            <div class="controls" ng-if="!isDetails">
+              <input type="text" ng-model="solicitacao.contato" name="contato" required>
+              <span class="help-inline" ng-show="form.contato.$error.required && !form.contato.$pristine" translate>
+                form.OBRIGATORIO
+              </span>
+            </div>
+            <div class="controls" ng-if="isDetails">
+              <p class="padding-top-sm no-margin" ng-bind="solicitacao.contato"></p>
+            </div>
+          </div>
+
+          <div class="controls" ng-if="!isDetails">
+            <button type="button" class="btn" ng-click="abrirModal()" ng-disabled="ativaBotaoNovoFavorito()">Adicionar aos favoritos</button>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <!-- Botões -->
+      <div class="control-group">
+        <div class="controls">
+          <button type="button" class="btn" ui-sref="solicitacao.listar" translate>form.CANCELAR</button>
+          <button ng-if="!isDetails" type="submit" class="btn btn-primary" ng-disabled="form.$invalid || !solicitacao.uf || !solicitacao.cidade || !solicitacao.logradouro || !solicitacao.uf || !solicitacao.cidade || $root.loading" translate>form.SALVAR_E_ENVIAR</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

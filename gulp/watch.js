@@ -1,38 +1,15 @@
 'use strict';
 
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
 
-function isOnlyChange(event) {
-  return event.type === 'changed';
-}
+var paths = gulp.paths;
 
-module.exports = function(options) {
-  gulp.task('watch', ['inject'], function () {
-
-    gulp.watch([options.src + '/*.html', 'bower.json'], ['inject']);
-
-    gulp.watch([
-      options.src + '/{app,components}/**/*.css',
-      options.src + '/{app,components}/**/*.scss'
-    ], function(event) {
-      if(isOnlyChange(event)) {
-        gulp.start('styles');
-      } else {
-        gulp.start('inject');
-      }
-    });
-
-    gulp.watch(options.src + '/{app,components}/**/*.js', function(event) {
-      if(isOnlyChange(event)) {
-        gulp.start('scripts');
-      } else {
-        gulp.start('inject');
-      }
-    });
-
-    gulp.watch(options.src + '/{app,components}/**/*.html', function(event) {
-      browserSync.reload(event.path);
-    });
-  });
-};
+gulp.task('watch', ['inject'], function () {
+  gulp.watch([
+    paths.src + '/*.html',
+    paths.src + '/{app,components}/**/*.scss',
+    paths.src + '/{app,components}/**/*.js',
+    paths.src + '/{app,components}/**/*.coffee',
+    'bower.json'
+  ], ['inject']);
+});

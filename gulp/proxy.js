@@ -21,10 +21,16 @@ var chalk = require('chalk');
 /*
  * Location of your backend server
  */
-var proxyTarget = 'http://server/context/';
+var proxyTarget = 'http://docker:8080';
 
 var proxy = httpProxy.createProxyServer({
   target: proxyTarget
+});
+
+proxy.on('proxyReq', function(proxyReq, req, res) {
+  proxyReq.setHeader('Access-Control-Allow-Origin', proxyTarget);
+
+  console.log(chalk.green('[Proxy]'), 'Request made to:', proxyTarget+req.url);
 });
 
 proxy.on('error', function(error, req, res) {
@@ -48,9 +54,12 @@ function proxyMiddleware(req, res, next) {
    * for your needs. If you can, you could also check on a context in the url which
    * may be more reliable but can't be generic.
    */
-  if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|woff2|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
+  // if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
+  if (!/api\//.test(req.url)) {
     next();
   } else {
+    // Remove api/ from request url
+    req.url = req.url.replace(/api\//, '');
     proxy.web(req, res);
   }
 }
@@ -61,7 +70,5 @@ function proxyMiddleware(req, res, next) {
  * The first line activate if and the second one ignored it
  */
 
-//module.exports = [proxyMiddleware];
-module.exports = function() {
-  return [];
-};
+module.exports = [proxyMiddleware];
+// module.exports = [];

@@ -5,59 +5,42 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep');
-var karma = require('karma');
-var concat = require('concat-stream');
-var _ = require('lodash');
 
-module.exports = function(options) {
-  function listFiles(callback) {
-    var bowerDeps = wiredep({
-      directory: 'bower_components',
-      exclude: [/bootstrap-sass-official/, /bootstrap\.css/],
-      dependencies: true,
-      devDependencies: true
-    });
+var paths = gulp.paths;
 
-    var specFiles = [
-      options.src + '/**/*.spec.js',
-      options.src + '/**/*.mock.js'
-    ];
-
-    var htmlFiles = [
-      options.src + '/**/*.html'
-    ];
-
-    var srcFiles = [
-      options.src + '/{app,components}/**/*.js'
-    ].concat(specFiles.map(function(file) {
-      return '!' + file;
-    }));
-
-
-    gulp.src(srcFiles)
-      .pipe(concat(function(files) {
-        callback(bowerDeps.js
-          .concat(_.pluck(files, 'path'))
-          .concat(htmlFiles)
-          .concat(specFiles));
-      }));
-  }
-
-  function runTests (singleRun, done) {
-    listFiles(function(files) {
-      //console.log(files);
-      karma.server.start({
-        configFile: __dirname + '/../karma.conf.js',
-        files: files,
-        singleRun: singleRun
-      }, done);
-    });
-  }
-
-  gulp.task('test', ['scripts'], function(done) {
-    runTests(true, done);
+function runTests (singleRun, done) {
+  var bowerDeps = wiredep({
+    directory: 'bower_components',
+    exclude: ['bootstrap-sass-official'],
+    dependencies: true,
+    devDependencies: true
   });
-  gulp.task('test:auto', ['watch'], function(done) {
-    runTests(false, done);
-  });
-};
+
+  var testFiles = bowerDeps.js.concat([
+    paths.config + '/config.js',
+    paths.tmp + '/serve/{app,components}/**/*.js',
+    paths.src + '/{app,components}/**/*.html',
+    paths.src + '/{app,components}/**/*.spec.js',
+    paths.src + '/{app,components}/**/*.mock.js',
+    paths.src + '/guideline/**/vendors.js',
+    paths.src + '/guideline/**/fnSetFilteringDelay.js',
+    paths.src + '/guideline/**/guideline.js',
+    paths.tests + '/mocks/mocks.js',
+    paths.tests + '/mocks/**/*.js',
+    paths.tests + '/vendors/**/*.js',
+    'bower_components/underscore/underscore-min.js'
+  ]);
+
+  gulp.src(testFiles)
+    .pipe($.karma({
+      configFile: 'karma.conf.js',
+      action: (singleRun)? 'run': 'watch'
+    }))
+    .on('error', function (err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+}
+
+gulp.task('test', ['scripts'], function (done) { runTests(true /* singleRun */, done) });
+gulp.task('test:auto', ['scripts'], function (done) { runTests(false /* singleRun */, done) });

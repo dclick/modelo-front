@@ -1,0 +1,26 @@
+.request-loader {
+  background : rgba(255,255,255,0.6);
+  height     : 100%;
+  left       : 0;
+  position   : fixed;
+  top        : 0;
+  width      : 100%;
+  z-index    : 999999;
+
+  .spinner {
+    left          : 50% !important;
+    margin        : -5px 0 0 -5px;
+    position      : absolute !important;
+    top           : 50% !important;
+
+    &:before {
+      content: '';
+      display       : block;
+      width         : 60px;
+      height        : 60px;
+      left          : -30px;
+      position      : relative;
+      top           : -30px;
+    }
+  }
+}

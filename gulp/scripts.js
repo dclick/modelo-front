@@ -1,16 +1,21 @@
 'use strict';
 
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
+
+var paths = gulp.paths;
 
 var $ = require('gulp-load-plugins')();
 
-module.exports = function(options) {
-  gulp.task('scripts', function () {
-    return gulp.src(options.src + '/{app,components}/**/*.js')
-      .pipe($.jshint())
-      .pipe($.jshint.reporter('jshint-stylish'))
-      .pipe(browserSync.reload({ stream: true }))
-      .pipe($.size());
-  });
-};
+gulp.task('scripts', function () {
+  return gulp.src(paths.src + '/{app,components}/**/*.coffee')
+    // .pipe($.coffeelint())
+    .pipe($.coffeelint.reporter())
+    .pipe($.coffee())
+    .on('error', function handleError(err) {
+      console.error(err.toString());
+      this.emit('end');
+    })
+    .pipe(gulp.dest(paths.tmp + '/serve/'))
+    .pipe($.size())
+});
+

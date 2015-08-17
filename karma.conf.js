@@ -2,70 +2,55 @@
 
 module.exports = function(config) {
 
-  var configuration = {
+  config.set({
     autoWatch : false,
 
     frameworks: ['jasmine'],
 
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      moduleName: 'redspark.templates'
-    },
-
-    browsers : ['PhantomJS'],
-
-    reporters: ['progress', 'coverage','junit'],
+    browsers : [
+      'PhantomJS'
+      // 'Chrome'
+    ],
 
     plugins : [
-        'karma-phantomjs-launcher',
-        'karma-jasmine',
-        'karma-ng-html2js-preprocessor',
-        'karma-coverage',
-        'karma-junit-reporter',
-        'karma-chrome-launcher'
+      'karma-phantomjs-launcher',
+      'karma-ng-html2js-preprocessor',
+      'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-coverage'
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js'],
-      'src/**/!(*spec.js|*.html)': ['coverage']
+      'src/{app,components}/**/*.html' : ['ng-html2js']
+      // '.tmp/serve/{app,components/!(guideline)}/**/*.js' : ['coverage']
     },
 
-    junitReporter: {
-      outputFile: 'coverage/test-results.xml',
-      suite: ''
-    },
+    // generates the coverage
+    reporters: [
+      'progress',
+      'coverage'
+    ],
 
+    // Output coverage file
     coverageReporter: {
-      dir : 'coverage',
-      reporters: [
-        // reporters not supporting the `file` property
-        { type: 'html', subdir: 'report-html' },
-        //{ type: 'lcov', subdir: 'report-lcov' },
-        // reporters supporting the `file` property, use `subdir` to directly
-        // output them in the `dir` directory
-        //{ type: 'cobertura', subdir: '.', file: 'cobertura.txt' },
-        { type: 'lcovonly', subdir: '.', file: 'report-lcov.lcov' },
-        //{ type: 'teamcity', subdir: '.', file: 'teamcity.txt' },
-        //{ type: 'text', subdir: '.', file: 'text.txt' },
-        //{ type: 'text-summary', subdir: '.', file: 'text-summary.txt' },
-      ]
-    }
+      type : 'lcov',
+      subdir: 'report-lcov',
+      // output path
+      dir : 'tests/coverage/'
+    },
 
-  };
+    exclude: [
+      'app/i18n/pt-BR.json'
+    ],
 
-  // This block is needed to execute Chrome on Travis
-  // If you ever plan to use Chrome and Travis, you can keep it
-  // If not, you can safely remove it
-  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
-    configuration.customLaunchers = {
-      'chrome-travis-ci': {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    };
-    configuration.browsers = ['chrome-travis-ci'];
-  }
 
-  config.set(configuration);
+    ngHtml2JsPreprocessor: {
+      stripPrefix : 'src/'
+    },
+
+    // logLevel: 'config.LOG_DEBUG'
+    browserDisconnectTimeout : 10000, // default 2000
+    browserDisconnectTolerance : 1, // default 0
+    browserNoActivityTimeout : 60000, //default 10000
+  });
 };

@@ -1,0 +1,22 @@
+<div permissoes="ROLE_SOLICITACAO.LISTAR">
+  <div class="page-header">
+    <div class="container">
+      <div guideline-breadcrumbs></div>
+      <h1>Solicitações</h1>
+      <div class="page-header-options" permissoes="ROLE_SOLICITACAO.CRIAR">
+        <div class="display-inline">
+          <button class="btn btn-primary" ui-sref="solicitacao.criar" ng-disabled="!botoes.criarSS" translate>listagem.ADICIONAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <table id="datatable-listaSolicitacao" guideline-datatables data-options="options" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th ng-repeat="column in options.config.aoColumns track by $index" datatable-heading></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

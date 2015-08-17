@@ -1,0 +1,85 @@
+<div class="modal">
+  <form name="form" class="form-horizontal" novalidate ng-submit="create()">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="fecharModal()">×</button>
+      <h3>Novo Favorito</h3>
+    </div>
+    <div class="modal-body">
+      <div class="well">
+        <!-- Cidade -->
+        <div class="control-group" ng-class="{
+          'error': form.cidade.$invalid && !form.cidade.$pristine
+          }">
+          <label for="cidade" class="control-label" translate>meusEnderecos.form.CIDADE</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.cidade"></p>
+          </div>
+        </div>
+        <!-- CEP -->
+        <div class="control-group" ng-class="{
+          'error': form.cep.$invalid && !form.cep.$pristine
+          }">
+          <label for="cep" class="control-label" translate>meusEnderecos.form.CEP</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.cep"></p>
+          </div>
+        </div>
+        <!-- Logradouro -->
+        <div class="control-group" ng-class="{
+          'error': form.logradouro.$invalid && !form.logradouro.$pristine
+          }">
+          <label for="logradouro" class="control-label" translate>meusEnderecos.form.LOGRADOURO</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.logradouro"></p>
+          </div>
+        </div>
+        <!-- Numero -->
+        <div class="control-group" ng-class="{
+          'error': form.numero.$invalid && !form.numero.$pristine
+          }">
+          <label for="numero" class="control-label" translate>meusEnderecos.form.NUMERO</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.numero"></p>
+          </div>
+        </div>
+        <!-- Complemento -->
+        <div class="control-group" ng-class="{
+          'error': form.complemento.$invalid && !form.complemento.$pristine
+          }">
+          <label for="complemento" class="control-label" translate>meusEnderecos.form.COMPLEMENTO</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.complemento"></p>
+          </div>
+        </div>
+        <!-- Contato -->
+        <div class="control-group" ng-class="{
+          'error': form.contato.$invalid && !form.contato.$pristine
+          }">
+          <label for="contato" class="control-label" translate>meusEnderecos.form.CONTATO</label>
+          <div class="controls">
+            <p class="padding-top-sm no-margin" ng-bind="novoFavorito.contato"></p>
+          </div>
+        </div>
+      </div
+      <!-- Nome -->
+      <div class="control-group" ng-class="{
+        'error': form.nome.$invalid && !form.nome.$pristine
+        }">
+        <label for="nome" class="control-label required" translate>meusEnderecos.form.NOME</label>
+        <div class="controls">
+          <input type="text" ng-model="novoFavorito.nome" name="nome" placeholder="Informe o nome" ng-maxlength="60" required autofocus>
+          <span class="help-inline" ng-show="form.nome.$error.required && !form.nome.$pristine" translate>
+            form.OBRIGATORIO
+          </span>
+          <span class="help-inline" ng-show="form.nome.$error.maxlength && !form.nome.$pristine">
+            <span translate>form.MENOR_QUE</span> 60 caracteres
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" ng-click="fecharModal()" translate>form.CANCELAR</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid || !novoFavorito.nome" translate>form.SALVAR</button>
+    </div>
+  </form>
+</div>

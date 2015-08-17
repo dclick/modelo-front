@@ -1,0 +1,67 @@
+{
+  "listagem": {
+    "ADICIONAR": "Adicionar"
+  },
+"solicitacao": {
+    "form": {
+      "UNIDADE": "Unidade",
+      "DETALHES_SOLICITACAO": "Detalhes da solicitação",
+      "DATA_AGENDAMENTO": "Data do agendamento",
+      "PRIORIDADE": "Prioridade",
+      "NOME_SOLICITANTE": "Nome do solicitante",
+      "CONTA": "Conta",
+      "CCE": "CCE",
+      "FORMATO": "Formato",
+      "PESO_APROXIMADO": "Peso aproximado",
+      "CUBAGEM": "Cubagem",
+      "VALOR_ESTIMADO": "Valor Estimado",
+      "TIPO_SOLICITACAO": "Tipo de solicitação",
+      "FAVORITOS": "Favoritos",
+      "ENDERECO": "Endereço",
+      "CEP": "CEP",
+      "UF": "UF",
+      "CIDADE": "Cidade",
+      "BAIRRO": "Bairro",
+      "LOGRADOURO": "Logradouro",
+      "NUMERO": "Número",
+      "COMPLEMENTO": "Complemento",
+      "CONTATO": "Contato"
+    },
+    "SOLICITACAO_SALVA_SUCESSO": "Solicitação salva",
+    "SOLICITACAO_EXCLUIDA_SUCESSO": "Solicitação excluída"
+  },
+  "meusEnderecos": {
+    "form": {
+      "NOME": "Nome do Favorito",
+      "CEP": "CEP",
+      "LOGRADOURO": "Logradouro",
+      "NUMERO": "Numero",
+      "COMPLEMENTO": "Complemento",
+      "BAIRRO": "Bairro",
+      "CIDADE": "Cidade",
+      "UF": "UF",
+      "CONTATO": "Contato"
+    },
+    "MEUS_ENDERECOS_SALVO_SUCESSO": "Favorito salvo",
+    "MEUS_ENDERECOS_EXCLUIDO_SUCESSO": "Favorito excluído"
+    },
+  "form": {
+    "OBRIGATORIO": "Campo obrigatório",
+    "SALVAR": "Salvar",
+    "SALVAR_E_ENVIAR": "Salvar e enviar",
+    "CANCELAR": "Cancelar",
+    "EXPORTAR": "Exportar",
+    "BAIXAR": "Baixar",
+    "MAIOR_QUE": "Deve ser maior que",
+    "MENOR_QUE": "Deve ser menor que",
+    "MAIOR_IGUAL_A": "Deve ser maior ou igual a",
+    "MENOR_IGUAL_A": "Deve ser menor ou igual a",
+    "ATIVO": "Ativo",
+    "KM": "km",
+    "CM": "cm",
+    "KG": "kg"
+  },
+  "exception": {
+    "undefined": "Tempo limite de resposta atingido"
+  }
+}

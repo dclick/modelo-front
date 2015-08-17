@@ -1,0 +1,52 @@
+////////////////////////////////////////////
+// Mixins
+////////////////////////////////////////////
+
+////////////////////////////////////////////
+// Animation
+////////////////////////////////////////////
+@mixin animation($name, $duration, $timing_func, $delay, $it_count, $direction) {
+  animation: $name $duration $timing_func $delay $it_count $direction;
+  -webkit-animation: $name $duration $timing_func $delay $it_count $direction;
+  -moz-animation: $name $duration $timing_func $delay $it_count $direction;
+  -ms-animation: $name $duration $timing_func $delay $it_count $direction;
+  -o-animation: $name $duration $timing_func $delay $it_count $direction;
+}
+
+////////////////////////////////////////////
+// Border Radius
+////////////////////////////////////////////
+@mixin border_box {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+////////////////////////////////////////////
+// Border Radius
+////////////////////////////////////////////
+@mixin border_radius($val: 5px) {
+  border-radius: $val;
+  -webkit-border-radius: $val;
+  -moz-border-radius: $val;
+  -ms-border-radius: $val;
+  -o-border-radius: $val;
+}
+
+////////////////////////////////////////////
+// Transition
+////////////////////////////////////////////
+@mixin transition($el, $webkit-el, $attr...) {
+  transition: $el $attr;
+  -webkit-transition: $webkit-el $attr;
+  -moz-transition: $el $attr;
+}
+
+////////////////////////////////////////////
+// Transform
+////////////////////////////////////////////
+@mixin transform($val) {
+  transform: $val;
+  -webkit-transform: $val;
+  -moz-transform: $val;
+}

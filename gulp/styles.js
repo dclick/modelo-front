@@ -1,47 +1,49 @@
 'use strict';
 
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
+
+var paths = gulp.paths;
 
 var $ = require('gulp-load-plugins')();
 
-module.exports = function(options) {
-  gulp.task('styles', function () {
-    var sassOptions = {
-      style: 'expanded'
-    };
+gulp.task('styles', function () {
 
-    var injectFiles = gulp.src([
-      options.src + '/{app,components}/**/*.scss',
-      '!' + options.src + '/app/index.scss',
-      '!' + options.src + '/app/vendor.scss'
-    ], { read: false });
+  var sassOptions = {
+    style: 'expanded'
+  };
 
-    var injectOptions = {
-      transform: function(filePath) {
-        filePath = filePath.replace(options.src + '/app/', '');
-        filePath = filePath.replace(options.src + '/components/', '../components/');
-        return '@import \'' + filePath + '\';';
-      },
-      starttag: '// injector',
-      endtag: '// endinjector',
-      addRootSlash: false
-    };
+  var injectFiles = gulp.src([
+    paths.src + '/{app,components}/**/*.scss',
+    '!' + paths.src + '/app/index.scss',
+    '!' + paths.src + '/app/vendor.scss'
+  ], { read: false });
 
-    var indexFilter = $.filter('index.scss');
+  var injectOptions = {
+    transform: function(filePath) {
+      filePath = filePath.replace(paths.src + '/app/', '');
+      filePath = filePath.replace(paths.src + '/components/', '../components/');
+      return '@import \'' + filePath + '\';';
+    },
+    starttag: '// injector',
+    endtag: '// endinjector',
+    addRootSlash: false
+  };
 
-    return gulp.src([
-      options.src + '/app/index.scss',
-      options.src + '/app/vendor.scss'
-    ])
+  var indexFilter = $.filter('index.scss');
+
+  return gulp.src([
+    paths.src + '/app/index.scss',
+    paths.src + '/app/vendor.scss'
+  ])
     .pipe(indexFilter)
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(indexFilter.restore())
-    .pipe($.sourcemaps.init())
-    .pipe($.sass(sassOptions)).on('error', options.errorHandler('Sass'))
-    .pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
-    .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(options.tmp + '/serve/app/'))
-    .pipe(browserSync.reload({ stream: true }));
-  });
-};
+    .pipe($.sass(sassOptions))
+
+  .pipe($.autoprefixer())
+    .on('error', function handleError(err) {
+      console.error(err.toString());
+      this.emit('end');
+    })
+    .pipe(gulp.dest(paths.tmp + '/serve/app/'));
+});
