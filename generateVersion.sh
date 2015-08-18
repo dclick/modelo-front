@@ -11,4 +11,4 @@ echo "}" >> version.html
 echo "</body>" >> version.html
 echo "</pre>" >> version.html
 echo "</html>" >> version.html
-mv version.html ../sesc-motofrete-server/src/main/resources/static
+mv version.html ../backend_folder/src/main/resources/static

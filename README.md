@@ -115,3 +115,11 @@ The project contains i18n, all the translations should be placed in
 to use in the HTML, put the directive translate, follow the example
  <button class="btn btn-primary" translate>listagem.ADICIONAR</button>
 ```
+
+##CircleCI
+
+```
+to configure the integration with CircleCI, change the file generateVersion.sh
+
+change **backend_folder**
+```
