@@ -2,6 +2,8 @@
 
 # modelo-front
 
+**WARNING - This project is based in the back end of the project [sesc-motofrete](https://github.com/dclick/sesc-motofrete), so, if you want to see working, please, run the back end of this project**
+
 #Instructions to start developing
 
 **If you are using WINDOWS, consider use Vagrant with an Ubuntu Box inside, and don't run GULP in your guest JUST IN YOUR HOST**
@@ -83,7 +85,7 @@ and modify line 24 (proxyTarget)
 ##Other Configs
 
 ```
-go to folder /sesc-config
+Edit the file ./sesc-config/config.js
 
 APP_BASE_URL = global var that you can use in services urls
 APP_USER_NOT_AUTH_REDIRECT = if the user is not authenticated, this is the default route that you trasnfer him
@@ -111,5 +113,5 @@ The project contains i18n, all the translations should be placed in
 /src/i18n/"language".json
 
 to use in the HTML, put the directive translate, follow the example
-` <button class="btn btn-primary" translate>listagem.ADICIONAR</button>`
+ <button class="btn btn-primary" translate>listagem.ADICIONAR</button>
 ```
