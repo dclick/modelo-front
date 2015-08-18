@@ -11,11 +11,4 @@ angular.module 'modeloBase'
   .constant 'APP_OTHERWISE_URL', window.config.APP_OTHERWISE_URL
   .constant 'STATUS', {
     SS_GERADA : 'Solicitação gerada'
-    OS_GERADA : 'Ordem de serviço gerada'
-    EX_GERADA : 'Expedição gerada'
-    CONCLUIDO : 'Entrega concluída'
-    RETORNADO : 'Entrega retornada'
-    REPROVADO : 'Solicitação reprovada'
-    EXCLUIDA  : 'Solicitação excluída'
-    LIBERADA  : 'Liberada para faturamento'
   }
