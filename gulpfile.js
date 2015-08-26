@@ -8,7 +8,7 @@ gulp.paths = {
   tmp: '.tmp',
   e2e: 'e2e',
   tests: 'tests',
-  config: 'sesc-config'
+  config: 'sesc-config/modelo'
 };
 
 require('require-dir')('./gulp');
