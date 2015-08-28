@@ -14,6 +14,7 @@ angular.module 'guideline', [
   'guideline.datepicker'
   'guideline.notification-center'
   'guideline.application-navbar'
+  'guideline.application-footer'
   'guideline.breadcrumbs'
   'guideline.autocomplete'
   'guideline.gestorAcesso'
